@@ -2,6 +2,7 @@ package connection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -35,7 +36,11 @@ public class ConnectionFactory {
             return;
         }
         if(mainConnection.get().isRunning() == false) {
-            System.out.println("change 수행");
+            System.out.println(" ----------------------");
+            System.out.println("Change 수행");
+            System.out.println("예외가 생긴 Connection Id : " + mainConnection.get().getConnectionId());
+            System.out.println("새롭게 바뀔 Connection Id : " + preConnectionList.get(0).get().getConnectionId());
+
             mainConnection.compareAndSet(mainConnection.get(), preConnectionList.get(0).get());
             preConnectionList.remove(0);
         }

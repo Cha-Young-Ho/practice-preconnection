@@ -41,7 +41,6 @@ public class Connection<T> {
             }
         }
         this.requestCount.getAndAdd(1);
-        System.out.println("현재 Connection Count : " + this.requestCount.get());
         return foundedUserList;
     }
 

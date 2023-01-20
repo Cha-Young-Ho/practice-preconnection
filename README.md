@@ -21,7 +21,60 @@ Practice Preconnection in Async Enviroment
   * 새 Connection의 동시 요청에 대한 대비
   * 장애에 대한 로깅
 * 누수되는 요청이 없어야 함
-* 테스트 코드 작성이 가능해야함
+
+# 코드 & 설명
+구성되어있는 코드는 다음과 같습니다.
+
+## Connection
+
+* Connection : 외부 Connection을 말하는 객체입니다.
+* ConnectionFactory : 다수의 Connection을 관리해주는 Factory입니다.
+
+## Server
+* Server : main 메서드를 가지고 있으며, 자체적으로 요청을 만듭니다.
+
+## Thread
+* CustomThread : 실제 요청마다 행해질 동작을 명시한 객체입니다. tomcat에서의 worker Thread라고 보면 됩니다.
+
+## User
+* User : 더미데이터를 위한 객체입니다.
+
+## 전체 흐름 파악하기
+
+1. Server(main) 에서 ThreadPool을 준비합니다.
+
+```java
+ExecutorService es = Executors.newCachedThreadPool();
+```
+
+2. Server(main) 에서 ConnectionFactory를 통해서 Connection을 준비합니다.
+
+```java
+ConnectionFactory.init();
+```
+
+3. Server(main) 에서 Thread를 201개 생성합니다.
+
+```java
+for (int i = 0; i <=200; i++) {
+            es.submit(new CustomThread(i));
+}
+```
+
+# 결과 보기
+
+
+위의 화면에서 볼 수 있듯이, Connection이 총 3개가 사용된 것을 볼 수 있습니다.
+
+
+
+
+
+
+
+
+
+
 
 
 
