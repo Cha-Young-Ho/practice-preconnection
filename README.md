@@ -63,7 +63,7 @@ for (int i = 0; i <=200; i++) {
 
 # 결과 보기
 
-
+<img width="503" alt="image" src="https://user-images.githubusercontent.com/79268661/213625594-83ab64ca-da28-4f17-a000-3d1240dc8dc7.png">
 위의 화면에서 볼 수 있듯이, Connection이 총 3개가 사용된 것을 볼 수 있습니다.
 
 
